@@ -23,6 +23,7 @@
 
     telegram-desktop
   ];
+
   environment.variables.EDITOR = "nvim";
   environment.variables.VISUAL = "nvim";
   environment.systemPath = lib.mkBefore [

@@ -28,6 +28,21 @@ darwin-debug:
 
   ./result/sw/bin/darwin-rebuild switch --flake .#{{hostname}} --show-trace --verbose
 
+
+############################################################################
+#
+#  Home-manager related commands
+#
+############################################################################
+
+
+[group('home-manager')]
+home:
+  home-manager switch --flake . \
+    --extra-experimental-features 'nix-command flakes'
+
+
+
 ############################################################################
 #
 #  nix related commands

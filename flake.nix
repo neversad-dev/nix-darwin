@@ -3,20 +3,26 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
+
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
   let
-      username = "tinker";
-      useremail = "tinker@null.computer";
+      username = "neversad";
+      useremail = "neversad@null.computer";
       system = "aarch64-darwin"; # aarch64-darwin or x86_64-darwin
       hostname = "vm-mac";
+
+      pkgs = nixpkgs.legacyPackages.${system};
 
       specialArgs =
         inputs
@@ -29,10 +35,17 @@
       inherit system specialArgs;
       modules = [ 
         ./modules/nix-core.nix
-	./modules/system.nix
+	      ./modules/system.nix
         ./modules/apps.nix
-	./modules/host-users.nix
+	      ./modules/host-users.nix
       ];
+    };
+
+    homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      extraSpecialArgs = specialArgs;
+
+      modules = [ ./home ];
     };
 
     # nix code formatter

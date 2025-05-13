@@ -20,9 +20,15 @@
       url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # my wallpapers
+    wallpapers = {
+      url = "github:neversad-dev/wallpapers";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, wallpapers, ... }:
   let
       username = "neversad";
       useremail = "neversad@null.computer";
@@ -50,7 +56,7 @@
 
     homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = specialArgs;
+      extraSpecialArgs = specialArgs // { inherit wallpapers; };
  
       modules = [ ./home/darwin ];
     };

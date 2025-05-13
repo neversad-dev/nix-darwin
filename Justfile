@@ -1,6 +1,6 @@
 # just is a command runner, Justfile is very similar to Makefile, but simpler.
 
-hostname := "vm-mac"
+hostname := "mbair"
 
 
 # List all the just commands

@@ -1,6 +1,6 @@
 {pkgs, ...}: {
 
-  # ensure ghostty is installed
+  # ensure zed is installed
   home.packages = [
     pkgs.zed-editor
   ];

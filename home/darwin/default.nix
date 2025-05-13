@@ -3,7 +3,13 @@
 {
   # import sub modules
   imports = [
-    ../common
+    ../common/home.nix
+    ../common/core
+    ../common/tui
+    ../common/gui
+
+    ./aerospace
+    ./sketchybar
   ];
 
   # Home Manager needs a bit of information about you and the

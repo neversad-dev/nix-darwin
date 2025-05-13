@@ -1,10 +1,5 @@
 {pkgs, ...}: {
 
-  # ensure zed is installed
-  home.packages = [
-    pkgs.zed-editor
-  ];
-
   programs.zed-editor = {
     enable = true;
     package = pkgs.zed-editor;

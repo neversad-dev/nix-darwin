@@ -77,6 +77,7 @@
       "alt-tab"
       "hiddenbar"
       "aerospace"
+      "bettertouchtool"
 
       # messengers
       "viber"

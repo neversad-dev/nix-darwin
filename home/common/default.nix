@@ -1,19 +1,16 @@
-{ username, ... }:
+{ pkgs, username, ... }:
 
 {
-  # import sub modules
   imports = [
-    ./shell.nix
-    ./core.nix
-    ./git.nix
-    ./starship.nix
+    ./core
+    ./tui
+    ./gui
   ];
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home = {
-    username = username;
-    homeDirectory = "/Users/${username}";
+    inherit username;
 
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage
@@ -24,7 +21,14 @@
     # the Home Manager release notes for a list of state version
     # changes in each release.
     stateVersion = "24.11";
+
+    packages = [
+      pkgs.nil # LSP for nix language
+    ];
   };
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

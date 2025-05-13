@@ -31,14 +31,25 @@
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
       pull.rebase = true;
-    };
 
-    delta = {
-      enable = true;
-      options = {
-        features = "side-by-side";
+      url = {
+        "ssh://git@github.com/neversad-dev" = {
+          insteadOf = "https://github.com/neversad-dev";
+        };
+      };
+
+      # signing = {
+      #   key = "xxx";
+      #   signByDefault = true;
+      # };
+
+      delta = {
+        enable = true;
+        options = {
+          side-by-side = true;
+          navigate = true;
+        };
       };
     };
-
   };
 }

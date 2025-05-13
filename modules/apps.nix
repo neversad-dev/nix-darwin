@@ -22,6 +22,7 @@
     just
 
     telegram-desktop
+    zed-editor
   ];
 
   environment.variables.EDITOR = "nvim";

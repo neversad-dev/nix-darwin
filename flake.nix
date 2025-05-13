@@ -13,6 +13,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # theme
+    catppuccin.url = "github:catppuccin/nix";
+    catppuccin-vsc = {
+      url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
@@ -44,8 +51,8 @@
     homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = specialArgs;
-
-      modules = [ ./home ];
+ 
+      modules = [ ./home/darwin ];
     };
 
     # nix code formatter

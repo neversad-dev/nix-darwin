@@ -79,9 +79,9 @@
       "aerospace"
 
       # messengers
-      # "viber"
-      # "signal"
-      # "zoom"
+      "viber"
+      "signal"
+      "zoom"
 
       "itsycal"
       "iina"
@@ -108,11 +108,11 @@
     # You need to install all these Apps manually first so that your apple account have records for them.
     # otherwise Apple Store will refuse to install them.
     # For details, see https://github.com/mas-cli/mas
-    # masApps = {
-    #   Xcode = 497799835;
+    masApps = {
+      Xcode = 497799835;
     #   wireguard = 1451685025;
-    #   Bitwarden = 1352778147;
-    #   PDFgear = 6469021132;
-    # };
+      Bitwarden = 1352778147;
+      PDFgear = 6469021132;
+    };
   };
 }

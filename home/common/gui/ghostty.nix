@@ -4,9 +4,10 @@
   home.file.".config/ghostty/config".text = ''
     theme = catppuccin-mocha
 
-    working-directory = "inherit"   
+    window-inherit-working-directory = "true"   
 
     macos-titlebar-style = "hidden"
 
   '';
 }
+

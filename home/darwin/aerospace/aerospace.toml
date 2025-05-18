@@ -103,7 +103,7 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:$${PATH}'
 # You can uncomment the following lines to open up terminal with alt + enter shortcut (like in i3)
 alt-enter = 'exec-and-forget /usr/bin/open -a ghostty'
 
-alt-w = 'exec-and-forget /usr/bin/open -a zen-browser'
+alt-w = 'exec-and-forget /usr/bin/open -a Zen'
 
 alt-b = 'exec-and-forget /usr/bin/open -a finder'
 
@@ -112,10 +112,10 @@ alt-s = 'exec-and-forget /usr/bin/open -a signal'
 alt-v = 'exec-and-forget /usr/bin/open -a viber'
 
 alt-c = '''exec-and-forget /usr/bin/open -a "Visual Studio Code"'''
+alt-a = '''exec-and-forget /usr/bin/open -a "Android Studio"'''
+alt-z = 'exec-and-forget /usr/bin/open -a zed'
 
 alt-o = 'exec-and-forget /usr/bin/open -a Obsidian'
-
-alt-z = 'exec-and-forget /usr/bin/open -a zed'
 
 alt-p = 'exec-and-forget /usr/bin/open -a Bitwarden'
 
@@ -274,6 +274,10 @@ if.app-id = 'com.autodesk.fusion360'
 run = 'move-node-to-workspace 6'
 
 ## Browsers
+
+[[on-window-detected]]
+if.app-id = 'app.zen-browser.zen'
+run = 'move-node-to-workspace 7'
 
 [[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'

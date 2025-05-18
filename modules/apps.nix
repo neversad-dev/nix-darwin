@@ -80,7 +80,6 @@
       "bettertouchtool"
 
       # messengers
-      "viber"
       "signal"
       "zoom"
 

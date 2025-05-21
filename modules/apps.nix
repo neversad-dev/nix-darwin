@@ -91,6 +91,7 @@
 
       "font-sf-pro"
       "sf-symbols"
+      "balenaetcher"
 
       "android-platform-tools"
       "android-file-transfer"

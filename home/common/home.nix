@@ -3,6 +3,10 @@
   username,
   ...
 }: {
+  imports = [
+    ./packages.nix
+  ];
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home = {
@@ -18,9 +22,11 @@
     # changes in each release.
     stateVersion = "24.11";
 
-    packages = [
-      pkgs.nil # LSP for nix language
-    ];
+    # Common environment variables
+    sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
   };
 
   # Allow unfree packages

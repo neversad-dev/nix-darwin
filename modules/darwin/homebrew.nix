@@ -1,39 +1,9 @@
 {
+  config,
   pkgs,
   lib,
   ...
 }: {
-  ##########################################################################
-  #
-  #  Install all apps and packages here.
-  #
-  ##########################################################################
-
-  # Install packages from nix's official package repository.
-  #
-  # The packages installed here are available to all users, and are reproducible across machines, and are rollbackable.
-  # But on macOS, it's less stable than homebrew.
-  #
-  # Related Discussion: https://discourse.nixos.org/t/darwin-again/29331
-  environment.systemPackages = with pkgs; [
-    neovim
-    git
-    just
-
-    telegram-desktop
-    zed-editor
-  ];
-
-  environment.variables.EDITOR = "nvim";
-  environment.variables.VISUAL = "nvim";
-  environment.systemPath = lib.mkBefore [
-    "/usr/local/bin" # intel mac
-    "/opt/homebrew/bin" # m1 mac
-    "/opt/homebrew/sbin"
-  ];
-
-  # The apps installed by homebrew are not managed by nix, and not reproducible!
-  # But on macOS, homebrew has a much larger selection of apps than nixpkgs, especially for GUI apps!
   homebrew = {
     enable = true;
 
@@ -111,4 +81,11 @@
       PDFgear = 6469021132;
     };
   };
+
+  # Add Homebrew paths to the session path
+  environment.systemPath = lib.mkBefore [
+    "/usr/local/bin" # intel mac
+    "/opt/homebrew/bin" # m1 mac
+    "/opt/homebrew/sbin"
+  ];
 }

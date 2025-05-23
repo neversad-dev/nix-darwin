@@ -52,10 +52,11 @@
     darwinConfigurations."${hostname}" = nix-darwin.lib.darwinSystem {
       inherit system specialArgs;
       modules = [
-        ./modules/nix-core.nix
-        ./modules/system.nix
-        ./modules/apps.nix
-        ./modules/host-users.nix
+        ./modules/common/packages.nix
+        ./modules/darwin/nix-core.nix
+        ./modules/darwin/system.nix
+        ./modules/darwin/host-users.nix
+        ./modules/darwin/homebrew.nix
       ];
     };
 

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  ...
-}:
-{
+{pkgs, ...}: {
   # Nix instance is managed via Determinate installation
   nix.enable = false;
 
@@ -23,5 +19,4 @@
   environment.systemPackages = [
     pkgs.home-manager
   ];
-
 }

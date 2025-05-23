@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}:
+{pkgs, ...}:
 ###################################################################################
 #
 #  macOS's System configuration
@@ -13,9 +10,6 @@
 #
 ###################################################################################
 {
-
- 
-
   # Add ability to used TouchID for sudo authentication
   security.pam.services.sudo_local.touchIdAuth = true;
 
@@ -231,19 +225,19 @@
 
   # Fonts
   fonts.packages = with pkgs; [
-      # icon fonts
-      material-design-icons
-      font-awesome
-      pkgs.sketchybar-app-font
+    # icon fonts
+    material-design-icons
+    font-awesome
+    pkgs.sketchybar-app-font
 
-      # nerdfonts
-      # https://github.com/NixOS/nixpkgs/blob/nixos-24.05/pkgs/data/fonts/nerdfonts/shas.nix
-      # symbols icon only
-      nerd-fonts.symbols-only
-      # Characters
-      nerd-fonts.fira-code
-      nerd-fonts.iosevka
-      nerd-fonts.meslo-lg
-      nerd-fonts.hack 
-    ];
+    # nerdfonts
+    # https://github.com/NixOS/nixpkgs/blob/nixos-24.05/pkgs/data/fonts/nerdfonts/shas.nix
+    # symbols icon only
+    nerd-fonts.symbols-only
+    # Characters
+    nerd-fonts.fira-code
+    nerd-fonts.iosevka
+    nerd-fonts.meslo-lg
+    nerd-fonts.hack
+  ];
 }

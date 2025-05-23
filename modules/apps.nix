@@ -2,8 +2,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   ##########################################################################
   #
   #  Install all apps and packages here.
@@ -33,7 +32,6 @@
     "/opt/homebrew/sbin"
   ];
 
-  
   # The apps installed by homebrew are not managed by nix, and not reproducible!
   # But on macOS, homebrew has a much larger selection of apps than nixpkgs, especially for GUI apps!
   homebrew = {
@@ -51,7 +49,6 @@
       cleanup = "zap";
     };
 
-
     # `brew install`
     brews = [
       "wget" # download tool
@@ -66,7 +63,6 @@
         restart_service = "changed";
       }
     ];
-
 
     # `brew install --cask`
     casks = [
@@ -104,14 +100,13 @@
       # "android-studio"
     ];
 
-
     # Applications to install from Mac App Store using mas.
     # You need to install all these Apps manually first so that your apple account have records for them.
     # otherwise Apple Store will refuse to install them.
     # For details, see https://github.com/mas-cli/mas
     masApps = {
       Xcode = 497799835;
-    #   wireguard = 1451685025;
+      #   wireguard = 1451685025;
       Bitwarden = 1352778147;
       PDFgear = 6469021132;
     };

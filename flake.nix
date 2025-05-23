@@ -28,37 +28,42 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, wallpapers, ... }:
-  let
-      username = "neversad";
-      useremail = "neversad@null.computer";
-      system = "aarch64-darwin"; # aarch64-darwin or x86_64-darwin
-      hostname = "mbair";
+  outputs = inputs @ {
+    self,
+    nix-darwin,
+    nixpkgs,
+    home-manager,
+    wallpapers,
+    ...
+  }: let
+    username = "neversad";
+    useremail = "neversad@null.computer";
+    system = "aarch64-darwin"; # aarch64-darwin or x86_64-darwin
+    hostname = "mbair";
 
-      pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = nixpkgs.legacyPackages.${system};
 
-      specialArgs =
-        inputs
-        // {
-          inherit username useremail hostname;
-        };
-  in
-  {
+    specialArgs =
+      inputs
+      // {
+        inherit username useremail hostname;
+      };
+  in {
     darwinConfigurations."${hostname}" = nix-darwin.lib.darwinSystem {
       inherit system specialArgs;
-      modules = [ 
+      modules = [
         ./modules/nix-core.nix
-	      ./modules/system.nix
+        ./modules/system.nix
         ./modules/apps.nix
-	      ./modules/host-users.nix
+        ./modules/host-users.nix
       ];
     };
 
     homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = specialArgs // { inherit wallpapers; };
- 
-      modules = [ ./home/darwin ];
+      extraSpecialArgs = specialArgs // {inherit wallpapers;};
+
+      modules = [./home/darwin];
     };
 
     # nix code formatter

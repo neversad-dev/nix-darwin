@@ -36,27 +36,27 @@
     wallpapers,
     ...
   }: let
+
     username = "neversad";
     useremail = "neversad@null.computer";
     system = "aarch64-darwin"; # aarch64-darwin or x86_64-darwin
     hostname = "mbair";
 
     pkgs = nixpkgs.legacyPackages.${system};
+    lib = nixpkgs.lib;
 
     specialArgs =
       inputs
       // {
         inherit username useremail hostname;
+        mylib = import ./lib { inherit lib; };
       };
   in {
     darwinConfigurations."${hostname}" = nix-darwin.lib.darwinSystem {
       inherit system specialArgs;
       modules = [
         ./modules/common/packages.nix
-        ./modules/darwin/nix-core.nix
-        ./modules/darwin/system.nix
-        ./modules/darwin/host-users.nix
-        ./modules/darwin/homebrew.nix
+        ./modules/darwin
       ];
     };
 

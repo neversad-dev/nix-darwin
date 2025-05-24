@@ -18,10 +18,12 @@
   system = {
     stateVersion = 6;
 
-    # activationScripts are executed every time you boot the system or run `nixos-rebuild` / `darwin-rebuild`.
-    activationScripts.postUserActivation.text = ''
-      # activateSettings -u will reload the settings from the database and apply them to the current session,
-      # so we do not need to logout and login again to make the changes take effect.
+    # Set the primary user for system-wide configurations
+    primaryUser = "neversad";
+
+    # Proper system activation script
+    activationScripts.extraActivation.text = ''
+      # activateSettings -u will reload the settings from the database and apply them to the current session
       /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     '';
 
@@ -82,13 +84,13 @@
         AppleMeasurementUnits = "Centimeters";
         AppleMetricUnits = 1;
         ApplePressAndHoldEnabled = false; # enable press and hold. It will display a popup allowing you pick a special character
-        AppleScrollerPagingBehavior = false; # Jump to the spot that’s clicked on the scroll bar. The default is false.
+        AppleScrollerPagingBehavior = false; # Jump to the spot that's clicked on the scroll bar. The default is false.
         AppleShowAllExtensions = true;
         AppleShowAllFiles = true;
-        AppleShowScrollBars = "Always"; # When to show the scrollbars. Options are ‘WhenScrolling’, ‘Automatic’ and ‘Always’.
+        AppleShowScrollBars = "Always"; # When to show the scrollbars. Options are 'WhenScrolling', 'Automatic' and 'Always'.
         AppleSpacesSwitchOnActivate = true; # Whether or not to switch to a workspace that has a window of the application open, that is switched to. The default is true.
         AppleTemperatureUnit = "Celsius";
-        AppleWindowTabbingMode = "fullscreen"; # Sets the window tabbing when opening a new document: ‘manual’, ‘always’, or ‘fullscreen’. The default is ‘fullscreen’.
+        AppleWindowTabbingMode = "fullscreen"; # Sets the window tabbing when opening a new document: 'manual', 'always', or 'fullscreen'. The default is 'fullscreen'.
         # sets how long it takes before it starts repeating.
         InitialKeyRepeat = 15; # normal minimum is 15 (225 ms), maximum is 120 (1800 ms)
         # sets how fast it repeats once it starts.

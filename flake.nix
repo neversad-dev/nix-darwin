@@ -36,19 +36,18 @@
     wallpapers,
     ...
   }: let
-    username = "neversad";
-    useremail = "neversad@null.computer";
     system = "aarch64-darwin"; # aarch64-darwin or x86_64-darwin
     hostname = "mbair";
 
     pkgs = nixpkgs.legacyPackages.${system};
     lib = nixpkgs.lib;
+    mylib = import ./lib {inherit lib;};
+    myvars = import ./vars;
 
     specialArgs =
       inputs
       // {
-        inherit username useremail hostname;
-        mylib = import ./lib {inherit lib;};
+        inherit myvars mylib hostname;
       };
   in {
     darwinConfigurations."${hostname}" = nix-darwin.lib.darwinSystem {
@@ -59,7 +58,7 @@
       ];
     };
 
-    homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."${myvars.username}" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = specialArgs // {inherit wallpapers inputs;};
 

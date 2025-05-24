@@ -1,6 +1,6 @@
 {
   hostname,
-  username,
+  myvars,
   ...
 }:
 #############################################################
@@ -13,10 +13,10 @@
   networking.computerName = hostname;
   system.defaults.smb.NetBIOSName = hostname;
 
-  users.users."${username}" = {
-    home = "/Users/${username}";
-    description = username;
+  users.users."${myvars.username}" = {
+    home = "/Users/${myvars.username}";
+    description = myvars.username;
   };
 
-  nix.settings.trusted-users = [username];
+  nix.settings.trusted-users = [myvars.username];
 }

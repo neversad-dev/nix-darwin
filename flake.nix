@@ -36,10 +36,11 @@
     wallpapers,
     ...
   }: let
-    system = "aarch64-darwin"; # aarch64-darwin or x86_64-darwin
+    darwinSystem = "aarch64-darwin"; # aarch64-darwin or x86_64-darwin
+    linuxSystem = "aarch64-linux";
     hostname = "mbair";
 
-    pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = nixpkgs.legacyPackages.${darwinSystem};
     lib = nixpkgs.lib;
     mylib = import ./lib {inherit lib;};
     myvars = import ./vars;
@@ -51,21 +52,30 @@
       };
   in {
     darwinConfigurations."${hostname}" = nix-darwin.lib.darwinSystem {
-      inherit system specialArgs;
+      inherit specialArgs;
+      system = darwinSystem;
       modules = [
         ./modules/common/packages.nix
         ./modules/darwin
       ];
     };
 
-    homeConfigurations."${myvars.username}" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."${myvars.username}@${hostname}" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = specialArgs // {inherit wallpapers inputs;};
 
       modules = [./home/darwin];
     };
 
+    homeConfigurations."${myvars.username}@linux-vm" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.${linuxSystem};
+      extraSpecialArgs = specialArgs // {inherit wallpapers inputs;};
+
+      modules = [./home/linux];
+    };
+
     # nix code formatter
-    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
+    formatter.${darwinSystem} = nixpkgs.legacyPackages.${darwinSystem}.alejandra;
+    formatter.${linuxSystem} = nixpkgs.legacyPackages.${linuxSystem}.alejandra;
   };
 }

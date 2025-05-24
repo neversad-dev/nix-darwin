@@ -111,7 +111,7 @@ alt-t = 'exec-and-forget /usr/bin/open -a telegram'
 alt-s = 'exec-and-forget /usr/bin/open -a signal'
 alt-v = 'exec-and-forget /usr/bin/open -a viber'
 
-alt-c = '''exec-and-forget /usr/bin/open -a "Visual Studio Code"'''
+alt-c = 'exec-and-forget /usr/bin/open -a VSCodium'
 alt-a = '''exec-and-forget /usr/bin/open -a "Android Studio"'''
 alt-z = 'exec-and-forget /usr/bin/open -a zed'
 

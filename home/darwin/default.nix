@@ -1,4 +1,8 @@
-{mylib, username, ...}: {
+{
+  mylib,
+  username,
+  ...
+}: {
   # import sub modules
   imports =
     (mylib.scanPaths ./.)

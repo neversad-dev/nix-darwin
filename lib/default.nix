@@ -1,6 +1,4 @@
 {lib, ...}: {
-
-
   scanPaths = path:
     builtins.map
     (f: (path + "/${f}"))
